@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'mandrill'
 
-
+#https://wireframe.cc/rUstuG
 get '/' do
   erb :index
 end
@@ -14,7 +14,7 @@ get '/about' do
   erb :about
 end
 
-get '/sendemail' do
+post '/sendemail' do
   m = Mandrill::API.new
   email = {
     :subject => "Message from Business Site",
@@ -22,12 +22,12 @@ get '/sendemail' do
     :from_name => "#{ params[:sender] }",
     :to => [
       {
-        :email => "jim@nycda.com",
+        :email => "herrwagner1680@gmail.com",
         :name => "#{ params[:receiver]}"
       }
     ],
     :html => "<html>#{params[:message]}</html>",
-    :from_email => "themysteryman@aol.com"
+    :from_email => "jim@nycda.com"
   }
   emailstatus = m.messages.send email
   p emailstatus
